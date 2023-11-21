@@ -21,10 +21,14 @@ class Phone(Field):
 
 class Record:
     def __init__(self, first_name, last_name, email = None, phones = None):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.phones = phones
+        self.first_name = FirstName(first_name)
+        self.last_name = LastName(last_name)
+        self.email = Email(email)
+        self.phones = []
+        
+        if phones is not None:
+            for phone in phones:
+                self.add_phone(phone)
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
